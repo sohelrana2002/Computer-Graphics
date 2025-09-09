@@ -1,0 +1,8 @@
+# Ignore Final Report folder
+Final Report/
+
+# Ignore Image folder
+Images/
+
+# Ignore all lab-report files with .docx extension anywhere in the project
+prototype.docx
