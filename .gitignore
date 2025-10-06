@@ -3,6 +3,16 @@ Final Report/
 
 # Ignore Image folder
 Images/
+bin/
+obj/
+bin/Debug
+obj/Debug
 
 # Ignore all lab-report files with .docx extension anywhere in the project
 prototype.docx
+lab-final.cbp
+lab-final.depend
+lab-final.layout
+lab-final-1.depend
+lab-final-1.cbp
+lab-final-1.layout
