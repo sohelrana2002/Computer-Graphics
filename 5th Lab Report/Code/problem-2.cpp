@@ -29,6 +29,7 @@ void put_pixel(float x, float y)
 
     glFlush();
 }
+
 void direct_circle(float x, float y, float z)
 {
     y = r;
@@ -49,7 +50,14 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0f, 0.0f, 0.0f);
 
+    // Draw axes
     glBegin(GL_LINES);
+    glColor3f(0, 0, 0);
+    glVertex2f(100, 0);
+    glVertex2f(-100, 0);
+    glVertex2f(0, 100);
+    glVertex2f(0, -100);
+    glEnd();
 
     direct_circle(x, y, r);
 }
