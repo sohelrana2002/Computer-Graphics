@@ -32,6 +32,7 @@ void put_pixel(float x, float y)
 
     glFlush();
 }
+
 void circle(float x, float y, float z)
 {
     float p = 1 - r;
@@ -58,11 +59,17 @@ void circle(float x, float y, float z)
 
 void display()
 {
-
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0f, 0.0f, 0.0f);
 
+    // Draw axes
     glBegin(GL_LINES);
+    glColor3f(0, 0, 0);
+    glVertex2f(100, 0);
+    glVertex2f(-100, 0);
+    glVertex2f(0, 100);
+    glVertex2f(0, -100);
+    glEnd();
 
     circle(x, y, r);
 }
@@ -82,7 +89,7 @@ int main(int argc, char *argv[])
     glutInitWindowSize(640, 480);
     glutInitWindowPosition(10, 10);
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
-    glutCreateWindow("GLUT Shapes");
+    glutCreateWindow("Mid point cicle drawing algorithm");
 
     init();
     glutDisplayFunc(display);
