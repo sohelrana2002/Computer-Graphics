@@ -30,7 +30,7 @@ void put_pixel(float x, float y)
     glFlush();
 }
 
-void direct_circle(float x, float y, float z)
+void direct_circle(float x, float y, float r)
 {
     y = r;
 
