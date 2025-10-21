@@ -14,20 +14,20 @@ Each program demonstrates different **graphics algorithms** and **transformation
 ## 🧩 Topics Covered
 Here are some of the key lab works included:
 
-- ✅ Basic OpenGL setup and line drawing
+✅ Basic OpenGL setup and line drawing
   - Triangle
   - Polygon
   - Writing Character
-- ✅ Line Drawing Algorithms  
+✅ Line Drawing Algorithms  
   - DDA (Digital Differential Analyzer)
   - DLD (Direct Line Drawing)
   - Bresenham’s Line Algorithm
-- ✅ Circle Drawing Algorithms
+✅ Circle Drawing Algorithms
   - Direct circle drawing algorithm
   - Mid point circle drawing algorithm
-- ✅ Mid Term Lab Final Question Solve
-- ✅ Extra Problem Solve
-- ✅ 2D Transformations  
+✅ Mid Term Lab Final Question Solve
+✅ Extra Problem Solve
+✅ 2D Transformations  
   - Translation  
   - Scaling  
   - Rotation  
