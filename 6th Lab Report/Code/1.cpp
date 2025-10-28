@@ -2,38 +2,40 @@
 #include <math.h>
 #include <stdio.h>
 
-
 // Original triangle vertices
 float triangle[3][2] = {
     {100.0, 100.0},
     {200.0, 100.0},
-    {150.0, 200.0}
-};
+    {150.0, 200.0}};
 
 // Transformed triangle vertices
 float transformedTriangle[3][2];
 
 // Transformation parameters
-float tx = 2.0, ty = 3.0;           // Translation
-float sx1 = 2.0, sy1 = 2.0;         // Scaling 1
-float sx2 = 0.5, sy2 = 0.5;         // Scaling 2
-float angle = 45.0;                  // Rotation angle in degrees
-float shr = 2.0;                     // Shearing
+float tx = 2.0, ty = 3.0;   // Translation
+float sx1 = 2.0, sy1 = 2.0; // Scaling 1
+float sx2 = 0.5, sy2 = 0.5; // Scaling 2
+float angle = 45.0;         // Rotation angle in degrees
+float shr = 2.0;            // Shearing
 
-void initialize() {
+void initialize()
+{
     glClearColor(1.0, 1.0, 1.0, 1.0);
     glMatrixMode(GL_PROJECTION);
     gluOrtho2D(-300, 300, -300, 300);
 
     // Initialize transformed triangle with original values
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 2; j++) {
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 2; j++)
+        {
             transformedTriangle[i][j] = triangle[i][j];
         }
     }
 }
 
-void drawTriangle() {
+void drawTriangle()
+{
     glBegin(GL_LINES);
     // Draw triangle edges
     glVertex2f(transformedTriangle[0][0], transformedTriangle[0][1]);
@@ -47,7 +49,8 @@ void drawTriangle() {
     glEnd();
 }
 
-void display() {
+void display()
+{
     glClear(GL_COLOR_BUFFER_BIT);
 
     // Draw axes
@@ -79,33 +82,39 @@ void display() {
     glutSwapBuffers();
 }
 
-void applyTranslation() {
-    for (int i = 0; i < 3; i++) {
+void applyTranslation()
+{
+    for (int i = 0; i < 3; i++)
+    {
         transformedTriangle[i][0] = triangle[i][0] + tx;
         transformedTriangle[i][1] = triangle[i][1] + ty;
     }
 }
 
-void applyScaling(float sx, float sy) {
+void applyScaling(float sx, float sy)
+{
     // Find center of triangle
     float centerX = (triangle[0][0] + triangle[1][0] + triangle[2][0]) / 3.0;
     float centerY = (triangle[0][1] + triangle[1][1] + triangle[2][1]) / 3.0;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         // Translate to origin, scale, then translate back
         transformedTriangle[i][0] = centerX + (triangle[i][0] - centerX) * sx;
         transformedTriangle[i][1] = centerY + (triangle[i][1] - centerY) * sy;
     }
 }
 
-void applyRotation() {
+void applyRotation()
+{
     float radians = angle * M_PI / 180.0; // Convert to radians
 
     // Find center of triangle
     float centerX = (triangle[0][0] + triangle[1][0] + triangle[2][0]) / 3.0;
     float centerY = (triangle[0][1] + triangle[1][1] + triangle[2][1]) / 3.0;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         // Translate to origin
         float x = triangle[i][0] - centerX;
         float y = triangle[i][1] - centerY;
@@ -116,26 +125,32 @@ void applyRotation() {
     }
 }
 
-void applyReflectionX() {
-    for (int i = 0; i < 3; i++) {
+void applyReflectionX()
+{
+    for (int i = 0; i < 3; i++)
+    {
         transformedTriangle[i][0] = triangle[i][0];
         transformedTriangle[i][1] = -triangle[i][1];
     }
 }
 
-void applyReflectionY() {
-    for (int i = 0; i < 3; i++) {
+void applyReflectionY()
+{
+    for (int i = 0; i < 3; i++)
+    {
         transformedTriangle[i][0] = -triangle[i][0];
         transformedTriangle[i][1] = triangle[i][1];
     }
 }
 
-void applyShearingX() {
+void applyShearingX()
+{
     // Calculate center of triangle
     float centerX = (triangle[0][0] + triangle[1][0] + triangle[2][0]) / 3.0;
     float centerY = (triangle[0][1] + triangle[1][1] + triangle[2][1]) / 3.0;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         // Translate point to origin, apply shear, then translate back
         float x = triangle[i][0] - centerX;
         float y = triangle[i][1] - centerY;
@@ -150,12 +165,14 @@ void applyShearingX() {
     }
 }
 
-void applyShearingY() {
+void applyShearingY()
+{
     // Calculate center of triangle
     float centerX = (triangle[0][0] + triangle[1][0] + triangle[2][0]) / 3.0;
     float centerY = (triangle[0][1] + triangle[1][1] + triangle[2][1]) / 3.0;
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         // Translate point to origin, apply shear, then translate back
         float x = triangle[i][0] - centerX;
         float y = triangle[i][1] - centerY;
@@ -170,8 +187,10 @@ void applyShearingY() {
     }
 }
 
-void keyboard(unsigned char key, int x, int y) {
-    switch (key) {
+void keyboard(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
     case '1':
         printf("Applying Translation\n");
         applyTranslation();
@@ -206,8 +225,10 @@ void keyboard(unsigned char key, int x, int y) {
         break;
     case 'R':
         printf("Resetting to original triangle\n");
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 2; j++) {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
                 transformedTriangle[i][j] = triangle[i][j];
             }
         }
@@ -220,7 +241,8 @@ void keyboard(unsigned char key, int x, int y) {
     glutPostRedisplay();
 }
 
-void printInstructions() {
+void printInstructions()
+{
     printf("\n=== 2D Transformation of Triangle ===\n");
     printf("Press keys 1-7 to apply transformations:\n");
     printf("1 - Translation\n");
@@ -229,13 +251,15 @@ void printInstructions() {
     printf("4 - Rotation\n");
     printf("5 - Reflection about X-axis\n");
     printf("6 - Reflection about Y-axis\n");
-    printf("7 - Shearing\n");
+    printf("7 - Applying Shearin in X axis\n");
+    printf("8 - Applying Shearin in Y axis\n");
     printf("R - Reset to original triangle\n");
     printf("ESC - Exit\n");
     printf("=====================================\n\n");
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     // glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
