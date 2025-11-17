@@ -4,6 +4,7 @@
 
 # Ignore Image folder
 Images/
+Lab Final Report/
 bin/
 obj/
 bin/Debug
